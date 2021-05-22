@@ -1,6 +1,6 @@
 # TidyTuesday-Vega-Lite
 
-
+Using Vega-Lite to make some interactiove web graphics. I have presented the static svg files for each of the plots below, but they are supposed to be rendered inside the html files in the directory for each plot for the full interactive effect (and with some explanatory text/titles etc.). I have used R to clean the data and store the cleaned data in csv files which are read into Vega-Lite. 
 
 ***
 
