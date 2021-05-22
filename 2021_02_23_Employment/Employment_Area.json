@@ -1,0 +1,67 @@
+
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "padding": {"left": 100, "top": 20, "right": 100, "bottom": 100},
+  "data": {"url": "cleaned.csv"},
+  "transform": [{"filter": {"or": [{"field": "year", "equal": 2015}, {"field": "year", "equal": 2020}]}}], 
+  "facet": {"column": {"field": "gender", "title":null}},
+  "config": {
+    "font": "Raleway"
+  },
+  
+  "spec":{
+    "width": 400, "height": 400, "view": {"stroke" : null},
+
+  "layer":[
+    {
+      "params": [{
+    "name": "industry1",
+    "select": {"type": "point", "fields": ["occ"]},
+    "bind": "legend"
+  }],
+      "mark": {"type": "line"},
+      "encoding": {
+        "y": {
+          "type": "quantitative",
+          "field": "employ_n",
+          "aggregate": "sum",
+          "axis": {"domain": false, "ticks": false},
+          "title": "Number of Employed Persons"},
+        "x": {
+          "field": "year",
+          "title":null,
+          "axis":{"labelAngle":45, "domain": false, "ticks": false}},
+        "opacity": {
+          "condition": {"param": "industry1", "value": 1},
+          "value": 0.1
+        },
+        "color": {
+            "field": "occ",
+             "type": "nominal"}}
+  },
+    {
+      "params": [{
+        "name": "industry2",
+        "select": {"type": "point", "fields": ["occ"]},
+        "bind": "legend"
+      }],
+      "mark": {"type":"point", "filled": true, "size":100},
+      "encoding": {
+        "y": {
+          "type": "quantitative",
+          "field": "employ_n",
+          "aggregate": "sum"},
+        "x": {
+          "field": "year"},  
+        "opacity": {
+          "condition": {"param": "industry2", "value": 1},
+          "value": 0.1},         
+        "color": {"field": "occ",
+             "type": "nominal",
+              "title": "Occupation",
+              "legend":{"labelLimit":300}}}
+              
+    }
+  ]
+  }
+}
