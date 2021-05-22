@@ -1,0 +1,46 @@
+
+  {
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 1300, "height": 500,
+    "background": "#00101f",
+    "view": {"fill": "#00101f", "stroke" : null},
+    "data": {"url": "cleaned.csv"},
+    "mark": {
+      "type": "circle",
+      "opacity": 0.75},
+    "encoding": {
+      "y": {
+         "type": "quantitative",
+         "field": "dodge",
+         "axis": false},
+      "x": {
+         "field": "launch_date",
+         "timeUnit": "yearmonthdate",
+         "axis": {
+          "labelColor": "white",
+          "format": "%Y",
+          "title": "Launch Date",
+          "titleColor": "white",
+          "domainColor" :  "#00101f",
+          "ticks": false,
+          "grid" : false}},
+      "color": {
+          "field": "agency_type",
+          "type": "nominal",
+          "legend": null,
+          "scale": {
+            "domain": ["state", "private", "startup"],
+            "range": ["#7EBDC2", "#BB4430", "#FFD23F"]},
+          "title": "Launch Agency"
+          },
+          "tooltip": [
+            {"field": "mission", "type": "nominal", "title": "Mission"},
+            {"field": "agency_type", "type": "nominal", "title": "Agency Type"}
+          ]
+      },
+      "config": {
+        "font": "Bebas"
+      }
+
+    }
+  
