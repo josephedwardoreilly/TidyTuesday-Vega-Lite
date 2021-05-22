@@ -1,0 +1,40 @@
+
+  {
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Shows the relationship between horsepower and the number of cylinders using tick marks.",
+    "width": 350, "height": 100,
+    "data": {"url": "cleaned.csv"},
+    "mark": {
+      "type": "rect",
+      "strokeWidth":3},
+    "encoding": {
+      "x": {
+        "field": "year",
+         "type": "nominal",
+         "axis":{
+           "labelAngle": 45,
+           "domain": false,
+           "ticks": false,
+            "title": null}},
+      "y": {
+        "field": "departure",
+        "type": "ordinal",
+        "axis": {
+          "title": null,
+          "domain": false, 
+          "ticks": false
+        },
+        "sort": {
+          "op": "sum",
+          "field": "N",
+          "order": "descending"}},
+      "color": {
+        "field": "N",
+        "type": "quantitative",
+        "scale":{"scheme": "plasma"},
+      "legend":{"direction": "horizontal", "orient": "top", "title": "Number of CEO Departures"}},
+      "stroke": {"value": "white"},
+      "tooltip":{"field": "N", "type": "quantitative"}
+    }
+  }
+  
