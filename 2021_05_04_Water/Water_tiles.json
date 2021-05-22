@@ -1,0 +1,68 @@
+
+  {
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 500, "height": 500,
+    "padding": {"left": 100, "top": 20, "right": 100, "bottom": 100},
+    "background": "#FBFFF1",
+    "view": {"fill": "#FBFFF1", "stroke" : null},
+    "data": {"url": "cleaned.csv"},
+    "transform": [
+      {"calculate": "datum.row", "as": "row"}
+    ],
+    "layer":[
+      {
+        "mark": "rect",
+        "encoding": {
+          "y": {
+            "type": "ordinal",
+            "field": "row",
+            "axis": false},
+          "x": {
+            "field": "col",
+            "type": "ordinal",
+            "axis": false},
+          "color": {
+              "field": "N",
+              "scale": {
+                "type": "threshold",
+                "domain": [10, 100, 1000, 10000, 100000]
+               },
+               "type": "quantitative",
+               "title": ["Number of", "Reported Water Points"]},
+          "stroke": {
+            "value": "black"}, 
+          "tooltip": [
+            {"field": "N", "type": "nominal", "title": "Number of reports"},
+            {"field": "name", "type": "nominal", "title": "Country"}
+          ]
+          }
+    },
+      {
+        "mark": {"type": "text", "fontSize": 20}, 
+        "encoding": {
+          "text": {"field": "code", "type": "nominal"},
+          "y": {
+            "type": "ordinal",
+            "field": "row",
+            "axis": false},
+          "x": {
+            "field": "col",
+            "type": "ordinal",
+            "axis": false},
+          "color": {
+            "condition": {"test": "datum['N'] < 10000000", "value": "black"},
+            "value": "white"
+          },
+          "tooltip": [
+            {"field": "N", "type": "nominal", "title": "Number of reports"},
+            {"field": "name", "type": "nominal", "title": "Country"}
+          ]
+        }
+      }
+    ], 
+      "config": {
+        "font": "Bebas"
+      }
+    }
+  
+  
